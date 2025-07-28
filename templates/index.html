@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block content %}
+<div style="display:flex; justify-content:space-between; gap:20px; width:90%; max-width:1000px;">
+
+    <!-- Left Column: Project Details -->
+    <div style="flex:1; background:#fff; padding:20px; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.1);">
+        <h2 style="margin-bottom:10px;">MG Bank Note Authentication System</h2>
+        <p style="font-size:14px; color:#777; margin-bottom:15px;">
+            This project predicts whether a bank note is <b>Authentic</b> or <b>Fake</b>
+            using a Deep Learning model built with TensorFlow/Keras.
+        </p>
+        <h3 style="margin-top:15px;">Project Details:</h3>
+        <ul style="font-size:14px; color:#444; line-height:1.6;">
+            <li><b>Variance:</b> Variance of the wavelet transformed image.</li>
+            <li><b>Skewness:</b> Skewness of the wavelet transformed image.</li>
+            <li><b>Curtosis:</b> Curtosis of the wavelet transformed image.</li>
+            <li><b>Entropy:</b> Entropy of the image.</li>
+        </ul>
+        <p style="font-size:14px; margin-top:10px;">
+            Enter these four parameters from a bank note image to verify its authenticity.
+        </p>
+        <div style="background:#f5f6fa; padding:12px; border-radius:8px; margin-top:10px; font-size:13px; color:#333;">
+            <b>Example Input:</b><br>
+            Variance: <b>-6.0598</b><br>
+            Skewness: <b>9.2952</b><br>
+            Curtosis: <b>-0.43642</b><br>
+            Entropy: <b>-6.3694</b>
+        </div>
+    </div>
+
+    <!-- Right Column: Form -->
+    <div style="flex:1; background:#fff; padding:20px; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.1); text-align:center;">
+        <h2>Enter Note Parameters</h2>
+        <form method="POST" style="margin-top:15px;">
+            <input type="number" step="any" name="variance" placeholder="Variance" required
+                   style="width:100%; padding:12px; margin-bottom:12px; border-radius:8px; border:1px solid #ccc;">
+            <input type="number" step="any" name="skewness" placeholder="Skewness" required
+                   style="width:100%; padding:12px; margin-bottom:12px; border-radius:8px; border:1px solid #ccc;">
+            <input type="number" step="any" name="curtosis" placeholder="Curtosis" required
+                   style="width:100%; padding:12px; margin-bottom:12px; border-radius:8px; border:1px solid #ccc;">
+            <input type="number" step="any" name="entropy" placeholder="Entropy" required
+                   style="width:100%; padding:12px; margin-bottom:12px; border-radius:8px; border:1px solid #ccc;">
+            <button type="submit"
+                    style="background:linear-gradient(135deg,#6a11cb,#2575fc); border:none; color:#fff; padding:12px; width:100%; border-radius:8px; font-weight:bold; cursor:pointer;">
+                Predict
+            </button>
+        </form>
+
+        {% if prediction_text %}
+            <div style="margin-top:15px; font-weight:bold; color:#27ae60; font-size:16px;">{{ prediction_text }}</div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

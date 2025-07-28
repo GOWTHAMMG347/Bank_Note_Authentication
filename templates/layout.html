@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MG Bank Note Authentication</title>
+    <style>
+        body, html { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #f5f6fa; }
+        a { text-decoration: none; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg,#6a11cb,#2575fc); padding: 10px 20px; color: #fff; }
+        .brand { font-size: 22px; font-weight: bold; }
+        .nav-right a, .welcome { margin-left: 15px; color: #fff; font-size: 14px; }
+        .btn-logout { background: #ff4b2b; padding: 5px 12px; border-radius: 6px; font-weight: bold; }
+        .flash-container { margin: 10px auto; max-width: 400px; }
+        .flash { padding: 10px; border-radius: 6px; margin-bottom: 8px; text-align: center; }
+        .flash.success { background: #2ecc71; color: #fff; }
+        .flash.error { background: #e74c3c; color: #fff; }
+        .flash.info { background: #3498db; color: #fff; }
+        .main-container { display: flex; justify-content: center; align-items: center; min-height: 75vh; }
+        .footer { background: #2c3e50; color: #bdc3c7; text-align: center; padding: 10px; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="brand">MG</div>
+        <div class="nav-right">
+            {% if session.get('username') %}
+                <span class="welcome">Hi, {{ session['username'] }}</span>
+                <a href="{{ url_for('logout') }}" class="btn-logout">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Login</a>
+                <a href="{{ url_for('register') }}">Register</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-container">
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Main Content -->
+    <main class="main-container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 MG Bank Note Authentication | Developed by Gowtham MG</p>
+    </footer>
+</body>
+</html>
