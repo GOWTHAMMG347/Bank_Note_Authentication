@@ -86,6 +86,3 @@ def home():
             prediction_text = "Invalid input data."
 
     return render_template('index.html', username=session['username'], prediction_text=prediction_text)
-
-if __name__ == '__main__':
-    app.run(debug=True)
