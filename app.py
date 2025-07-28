@@ -5,7 +5,7 @@ import sqlite3
 import os
 
 app = Flask(__name__)
-app.secret_key = "supersecretkey"
+app.secret_key = "4EF246C33859B457DF9CA73CD2626"
 
 # Load the ML model
 model_path = os.path.join("model", "bank_note_autenticate_model.keras")
